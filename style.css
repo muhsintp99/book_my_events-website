@@ -490,6 +490,33 @@ h6 {
   right: 0;
 }
 
+.banner-ad .banner-content .person {
+  position: relative;
+  display: inline-block;
+}
+
+.banner-ad .banner-content .person:before {
+  content: '';
+  width: 80px;
+  border-bottom: 1px solid #111;
+  position: absolute;
+  bottom: 6px;
+}
+
+.banner-ad .banner-content .person:after {
+  content: 'PERSON';
+  font-family: var(--body-font);
+  position: absolute;
+  font-size: 11px;
+  line-height: 15px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #252525;
+  bottom: 0;
+  right: -20px;
+}
+
+
 .banner-ad .banner-content .banner-title {
   letter-spacing: 0.02em;
   font-size: 33px;

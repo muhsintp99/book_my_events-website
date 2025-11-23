@@ -47,10 +47,10 @@
           slidesPerView: 3,
         },
         991: {
-          slidesPerView: 3,
+          slidesPerView: 4,
         },
         1500: {
-          slidesPerView: 4,
+          slidesPerView: 6,
         },
       }
     });
