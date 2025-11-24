@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- DYNAMIC TITLE UPDATED BY JS -->
+  <title>Loading Venue...</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Swiper -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f8f9fa;
+    }
+
+    .main-image {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .sidebar-card {
+      border: 1px solid #eee;
+      border-radius: 10px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .tag {
+      background: #f43127;
+      color: #fff;
+      padding: 6px 14px;
+      font-size: 13px;
+      border-radius: 30px;
+    }
+
+    .fac-icon {
+      font-size: 22px;
+      color: #f43127;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 180px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    .pricing-table th,
+    .pricing-table td {
+      padding: 10px;
+    }
+
+    .btn-action {
+      width: 100%;
+      height: 45px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="container py-4">
+
+    <div class="row">
+
+      <!-- LEFT CONTENT -->
+      <div class="col-lg-8 mb-4">
+
+        <!-- MAIN IMAGE -->
+        <img id="mainImage" class="main-image mb-4" src="">
+
+        <!-- MOBILE SIDEBAR -->
+        <div class="sidebar-card mb-4 d-block d-lg-none">
+
+          <h3 id="venueTitle" class="fw-bold"></h3>
+          <p class="text-muted"><i class="bi bi-geo-alt"></i> <span id="venueLocation"></span></p>
+
+          <span class="tag" id="venueCategory"></span>
+
+          <div class="mt-3">
+            <p><i class="bi bi-people me-2 text-primary"></i>
+              <b>Seating Capacity:</b> <span id="seatingCap"></span>
+            </p>
+
+            <p><i class="bi bi-people-fill me-2 text-success"></i>
+              <b>Standing Capacity:</b> <span id="standingCap"></span>
+            </p>
+
+            <p><i class="bi bi-geo-alt me-2 text-danger"></i>
+              <b>Distance:</b> <span id="distanceText">2.4 km away</span>
+            </p>
+
+            <p><i class="bi bi-star-fill text-warning me-1"></i>
+              <b>Rating:</b> <span id="ratingText"></span>
+            </p>
+          </div>
+
+          <!-- ACTION BUTTONS -->
+          <button class="btn btn-outline-primary btn-action"><i class="bi bi-telephone"></i> Call</button>
+          <button class="btn btn-outline-success btn-action"><i class="bi bi-chat"></i> Chat</button>
+          <button class="btn btn-outline-secondary btn-action"><i class="bi bi-share"></i> Share</button>
+          <button class="btn btn-danger btn-action"><i class="bi bi-calendar-check"></i> Book Now</button>
+
+        </div>
+
+        <!-- DESCRIPTION -->
+        <h4 class="fw-bold">About This Venue</h4>
+        <p id="venueDescription" class="text-muted">Loading description...</p>
+
+        <hr>
+
+        <!-- FACILITIES -->
+        <h4 class="fw-bold mb-3">Facilities</h4>
+        <div class="row" id="facilitiesList"></div>
+
+        <hr>
+
+        <!-- PRICING -->
+        <h4 class="fw-bold mb-3">Pricing</h4>
+        <div class="table-responsive">
+          <table class="table table-bordered pricing-table" id="pricingTable">
+            <thead class="table-light">
+              <tr>
+                <th>Day</th>
+                <th>Morning</th>
+                <th>Evening</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        <hr>
+
+        <!-- LOCATION -->
+        <h4 class="fw-bold mb-3">Location</h4>
+        <div class="ratio ratio-16x9 mb-2">
+          <iframe id="mapFrame" src=""></iframe>
+        </div>
+
+        <a id="googleMapsLink" href="#" target="_blank" class="text-primary">
+          <i class="bi bi-geo-alt"></i> View on Google Maps
+        </a>
+
+        <hr>
+
+        <!-- PHOTOS -->
+        <h4 class="fw-bold mb-3">Photos</h4>
+
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper" id="galleryWrapper"></div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT SIDEBAR (DESKTOP) -->
+      <div class="col-lg-4 d-none d-lg-block">
+
+        <div class="sidebar-card mb-4">
+
+          <h3 id="venueTitleDesk" class="fw-bold"></h3>
+          <p class="text-muted"><i class="bi bi-geo-alt"></i> <span id="venueLocationDesk"></span></p>
+
+          <span class="tag" id="venueCategoryDesk"></span>
+
+          <div class="mt-3">
+            <p><i class="bi bi-people me-2 text-primary"></i>
+              <b>Seating Capacity:</b> <span id="seatingCapDesk"></span>
+            </p>
+
+            <p><i class="bi bi-people-fill me-2 text-success"></i>
+              <b>Standing Capacity:</b> <span id="standingCapDesk"></span>
+            </p>
+
+            <p><i class="bi bi-geo-alt me-2 text-danger"></i>
+              <b>Distance:</b> <span id="distanceTextDesk">2.4 km away</span>
+            </p>
+
+            <p><i class="bi bi-star-fill text-warning me-1"></i>
+              <b>Rating:</b> <span id="ratingTextDesk"></span>
+            </p>
+          </div>
+
+          <!-- ACTION BUTTONS -->
+          <button class="btn btn-outline-primary btn-action"><i class="bi bi-telephone"></i> Call</button>
+          <button class="btn btn-outline-success btn-action"><i class="bi bi-chat"></i> Chat</button>
+          <button class="btn btn-outline-secondary btn-action"><i class="bi bi-share"></i> Share</button>
+          <button class="btn btn-danger btn-action"><i class="bi bi-calendar-check"></i> Book Now</button>
+
+          <hr>
+
+          <!-- CONTACT -->
+          <h5 class="fw-bold">Contact Information</h5>
+          <p><i class="bi bi-telephone"></i> <span id="contactPhone"></span></p>
+          <p><i class="bi bi-envelope"></i> <span id="contactEmail"></span></p>
+          <p><i class="bi bi-globe"></i> <span id="contactWebsite"></span></p>
+
+          <hr>
+
+          <!-- MANAGER -->
+          <h5 class="fw-bold">Venue Manager</h5>
+          <p><i class="bi bi-person-circle"></i> <span id="managerName"></span></p>
+          <p><i class="bi bi-phone"></i> <span id="managerPhone"></span></p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- API SCRIPT -->
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const venueId = urlParams.get("id");
+
+    const API_URL = `https://api.ookmyevent.ae/api/venues/${venueId}`;
+
+    async function loadVenue() {
+      try {
+        const res = await fetch(API_URL);
+        const json = await res.json();
+        const v = json.data;
+
+        /* ----------- SET PAGE TITLE ----------- */
+        document.title = `${v.venueName} - Venue Details`;
+
+        /* ----------- MAIN IMAGE ----------- */
+        document.getElementById("mainImage").src = v.thumbnail.replace("/var/www/backend", "");
+
+        /* ----------- TITLES ----------- */
+        document.getElementById("venueTitle").innerText = v.venueName;
+        document.getElementById("venueTitleDesk").innerText = v.venueName;
+        document.getElementById("venueLocation").innerText = v.venueAddress;
+        document.getElementById("venueLocationDesk").innerText = v.venueAddress;
+
+        /* ----------- CATEGORY ----------- */
+        const cat = v.categories[0]?.title || "Category";
+        document.getElementById("venueCategory").innerText = cat;
+        document.getElementById("venueCategoryDesk").innerText = cat;
+
+        /* ----------- CAPACITY ----------- */
+        document.getElementById("seatingCap").innerText = v.maxGuestsSeated;
+        document.getElementById("standingCap").innerText = v.maxGuestsStanding;
+        document.getElementById("seatingCapDesk").innerText = v.maxGuestsSeated;
+        document.getElementById("standingCapDesk").innerText = v.maxGuestsStanding;
+
+        /* ----------- RATING ----------- */
+        const ratingText = `${v.rating} (${v.reviewCount} reviews)`;
+        document.getElementById("ratingText").innerText = ratingText;
+        document.getElementById("ratingTextDesk").innerText = ratingText;
+
+        /* ----------- CONTACT ----------- */
+        document.getElementById("contactPhone").innerText = v.contactPhone;
+        document.getElementById("contactEmail").innerText = v.contactEmail;
+        document.getElementById("contactWebsite").innerText = v.contactWebsite;
+
+        /* ----------- MANAGER ----------- */
+        document.getElementById("managerName").innerText = v.ownerManagerName;
+        document.getElementById("managerPhone").innerText = v.ownerManagerPhone;
+
+        /* ----------- DESCRIPTION ----------- */
+        document.getElementById("venueDescription").innerText =
+          v.shortDescription || "No description available.";
+
+        /* ----------- MAP ----------- */
+        const mapUrl = `https://www.google.com/maps?q=${v.latitude},${v.longitude}&z=14&output=embed`;
+        document.getElementById("mapFrame").src = mapUrl;
+        document.getElementById("googleMapsLink").href = `https://www.google.com/maps?q=${v.latitude},${v.longitude}`;
+
+        /* ----------- GALLERY ----------- */
+        const gallery = document.getElementById("galleryWrapper");
+        gallery.innerHTML = "";
+        v.images.forEach(img => {
+          gallery.innerHTML += `
+            <div class="swiper-slide">
+              <img src="${img.replace("/var/www/backend", "")}">
+            </div>`;
+        });
+
+        /* ----------- FACILITIES ----------- */
+        document.getElementById("facilitiesList").innerHTML = `
+          <div class="col-6 mb-3"><i class="bi bi-wifi fac-icon"></i> Wifi: ${v.wifiAvailability ? "Yes" : "No"}</div>
+          <div class="col-6 mb-3"><i class="bi bi-snow fac-icon"></i> AC: ${v.acAvailable ? "Yes" : "No"}</div>
+          <div class="col-6 mb-3"><i class="bi bi-car-front fac-icon"></i> Parking: ${v.parkingCapacity}</div>
+          <div class="col-6 mb-3"><i class="bi bi-universal-access fac-icon"></i> Wheelchair: ${v.wheelchairAccessibility ? "Yes" : "No"}</div>
+        `;
+
+        /* ----------- PRICING ----------- */
+        const pricingBody = document.querySelector("#pricingTable tbody");
+        pricingBody.innerHTML = "";
+        const days = v.pricingSchedule;
+
+        for (let day in days) {
+          pricingBody.innerHTML += `
+            <tr>
+              <td>${day.charAt(0).toUpperCase() + day.slice(1)}</td>
+              <td>₹${days[day].morning.perDay}</td>
+              <td>₹${days[day].evening.perDay}</td>
+            </tr>`;
+        }
+
+      } catch (err) {
+        console.error("Error loading venue:", err);
+      }
+    }
+
+    loadVenue();
+
+    // Swiper
+    new Swiper(".mySwiper", {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      pagination: { el: ".swiper-pagination", clickable: true },
+      breakpoints: {
+        0: { slidesPerView: 1 },
+        768: { slidesPerView: 2 }
+      }
+    });
+  </script>
+
+</body>
+
+</html>
